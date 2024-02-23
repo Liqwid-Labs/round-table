@@ -27,9 +27,9 @@ const Toggle: FC<{
     <label className='cursor-pointer'>
       <input className='hidden peer' type='checkbox' checked={isOn} onChange={onChange} />
       <div className='flex border w-12 items-center rounded-full border-gray-500 bg-gray-500 peer-checked:bg-green-500 peer-checked:border-green-500 peer-checked:justify-end'>
-        <div className='h-6 w-6 rounded-full bg-white'></div>
+      <div className='h-6 w-6 rounded-full bg-white'></div>
       </div>
-    </label>
+      </label>
   )
 }
 
@@ -124,32 +124,32 @@ const PrimaryBar: FC = () => {
   return (
     <aside className='flex flex-col w-20 bg-sky-900 items-center text-white'>
       <NavLink
-        href='/'
-        onPageClassName='bg-sky-700'
-        className='p-4 hover:bg-sky-700'>
-        <HomeIcon className='w-12' />
+    href='/'
+    onPageClassName='bg-sky-700'
+    className='p-4 hover:bg-sky-700'>
+      <HomeIcon className='w-12' />
       </NavLink>
       <div id='open-tx'>
-        <OpenURL className='p-4 hover:bg-sky-700'>
-          <FolderOpenIcon className='w-12' />
-        </OpenURL>
+      <OpenURL className='p-4 hover:bg-sky-700'>
+      <FolderOpenIcon className='w-12' />
+      </OpenURL>
       </div>
       <div id='config'>
-        <ConfigModalButton className='p-4 hover:bg-sky-700'>
-          <CogIcon className='w-12' />
-        </ConfigModalButton>
+      <ConfigModalButton className='p-4 hover:bg-sky-700'>
+      <CogIcon className='w-12' />
+      </ConfigModalButton>
       </div>
       <a className='p-4 hover:bg-sky-700' target='_blank' rel='noreferrer' href='https://discord.gg/BGuhdBXQFU'>
-        <div style={{ height: '48px' }}>
-          <Image src='/Discord-Logo-White.svg' width={48} height={48} alt='Discord Server'></Image>
-        </div>
+      <div style={{ height: '48px' }}>
+      <Image src='/Discord-Logo-White.svg' width={48} height={48} alt='Discord Server'></Image>
+      </div>
       </a>
       <a className='p-4 hover:bg-sky-700' target='_blank' rel='noreferrer' href='https://github.com/ADAOcommunity/round-table'>
-        <svg className='w-12 fill-white' viewBox="0 0 1024 1024" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path fillRule="evenodd" clipRule="evenodd" d="M8 0C3.58 0 0 3.58 0 8C0 11.54 2.29 14.53 5.47 15.59C5.87 15.66 6.02 15.42 6.02 15.21C6.02 15.02 6.01 14.39 6.01 13.72C4 14.09 3.48 13.23 3.32 12.78C3.23 12.55 2.84 11.84 2.5 11.65C2.22 11.5 1.82 11.13 2.49 11.12C3.12 11.11 3.57 11.7 3.72 11.94C4.44 13.15 5.59 12.81 6.05 12.6C6.12 12.08 6.33 11.73 6.56 11.53C4.78 11.33 2.92 10.64 2.92 7.58C2.92 6.71 3.23 5.99 3.74 5.43C3.66 5.23 3.38 4.41 3.82 3.31C3.82 3.31 4.49 3.1 6.02 4.13C6.66 3.95 7.34 3.86 8.02 3.86C8.7 3.86 9.38 3.95 10.02 4.13C11.55 3.09 12.22 3.31 12.22 3.31C12.66 4.41 12.38 5.23 12.3 5.43C12.81 5.99 13.12 6.7 13.12 7.58C13.12 10.65 11.25 11.33 9.47 11.53C9.76 11.78 10.01 12.26 10.01 13.01C10.01 14.08 10 14.94 10 15.21C10 15.42 10.15 15.67 10.55 15.59C13.71 14.53 16 11.53 16 8C16 3.58 12.42 0 8 0Z" transform="scale(64)" />
-        </svg>
+      <svg className='w-12 fill-white' viewBox="0 0 1024 1024" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path fillRule="evenodd" clipRule="evenodd" d="M8 0C3.58 0 0 3.58 0 8C0 11.54 2.29 14.53 5.47 15.59C5.87 15.66 6.02 15.42 6.02 15.21C6.02 15.02 6.01 14.39 6.01 13.72C4 14.09 3.48 13.23 3.32 12.78C3.23 12.55 2.84 11.84 2.5 11.65C2.22 11.5 1.82 11.13 2.49 11.12C3.12 11.11 3.57 11.7 3.72 11.94C4.44 13.15 5.59 12.81 6.05 12.6C6.12 12.08 6.33 11.73 6.56 11.53C4.78 11.33 2.92 10.64 2.92 7.58C2.92 6.71 3.23 5.99 3.74 5.43C3.66 5.23 3.38 4.41 3.82 3.31C3.82 3.31 4.49 3.1 6.02 4.13C6.66 3.95 7.34 3.86 8.02 3.86C8.7 3.86 9.38 3.95 10.02 4.13C11.55 3.09 12.22 3.31 12.22 3.31C12.66 4.41 12.38 5.23 12.3 5.43C12.81 5.99 13.12 6.7 13.12 7.58C13.12 10.65 11.25 11.33 9.47 11.53C9.76 11.78 10.01 12.26 10.01 13.01C10.01 14.08 10 14.94 10 15.21C10 15.42 10.15 15.67 10.55 15.59C13.71 14.53 16 11.53 16 8C16 3.58 12.42 0 8 0Z" transform="scale(64)" />
+      </svg>
       </a>
-    </aside>
+      </aside>
   )
 }
 
@@ -163,13 +163,13 @@ const WalletLink: FC<{
   const info = (
     <div className='flex space-x-1 justify-between items-center p-4 bg-inherit'>
       <div className='w-2/3'>
-        <div className='truncate'>{name}</div>
-        <div className='text-sm font-normal'>
-          {lovelace !== undefined ? <ADAAmount lovelace={lovelace} /> : <SpinnerIcon className='animate-spin w-4' />}
-        </div>
+      <div className='truncate'>{name}</div>
+      <div className='text-sm font-normal'>
+      {lovelace !== undefined ? <ADAAmount lovelace={lovelace} /> : <SpinnerIcon className='animate-spin w-4' />}
+    </div>
       </div>
       <div>{children}</div>
-    </div>
+      </div>
   )
 
   if (isOnPage) return (
@@ -211,7 +211,7 @@ const PersonalWalletListing: FC<{
   return (
     <WalletLink href={getPersonalWalletPath(wallet.id)} name={wallet.name} isOnPage={isOnPage} lovelace={balance?.lovelace}>
       <WalletIcon className='w-8' />
-    </WalletLink>
+      </WalletLink>
   )
 }
 
@@ -236,7 +236,7 @@ const MultisigWalletListing: FC<{
   return (
     <WalletLink href={getMultisigWalletPath(wallet.policy)} name={wallet.name} isOnPage={isOnPage} lovelace={lovelace}>
       <UserGroupIcon className='w-8' />
-    </WalletLink>
+      </WalletLink>
   )
 }
 
@@ -277,19 +277,19 @@ const WalletList: FC = () => {
   return (
     <aside className='flex flex-col w-60 bg-sky-800 items-center text-white overflow-y-auto'>
       <nav className='w-full font-semibold'>
-        <NavLink
-          href='/new'
-          onPageClassName='bg-sky-700'
-          className='flex w-full p-4 items-center space-x-1 justify-center hover:bg-sky-700'>
-          <PlusIcon className='w-4' />
-          <span>New Wallet</span>
-        </NavLink>
+      <NavLink
+    href='/new'
+    onPageClassName='bg-sky-700'
+    className='flex w-full p-4 items-center space-x-1 justify-center hover:bg-sky-700'>
+      <PlusIcon className='w-4' />
+      <span>New Wallet</span>
+      </NavLink>
       </nav>
       <nav className='block w-full'>
-        {personalWallets?.map((wallet) => <PersonalWalletListing key={wallet.id} wallet={wallet} balances={balances} />)}
-        {multisigWallets?.map((wallet) => <MultisigWalletListing key={wallet.id} wallet={wallet} balance={balances?.get(wallet.id)} />)}
-      </nav>
-    </aside>
+      {personalWallets?.map((wallet) => <PersonalWalletListing key={wallet.id} wallet={wallet} balances={balances} />)}
+    {multisigWallets?.map((wallet) => <MultisigWalletListing key={wallet.id} wallet={wallet} balance={balances?.get(wallet.id)} />)}
+    </nav>
+      </aside>
   )
 }
 
@@ -325,17 +325,17 @@ const Layout: FC<{
       <PrimaryBar />
       <WalletList />
       <div className='w-full bg-sky-100 overflow-y-auto'>
-        {!isMainnet(config) && <div className='p-1 bg-red-900 text-white text-center'>You are using {config.network} network</div>}
-        <div className='p-2 h-screen space-y-2'>
-          <ChainProgress />
-          {children}
-        </div>
+      {!isMainnet(config) && <div className='p-1 bg-red-900 text-white text-center'>You are using {config.network} network</div>}
+      <div className='p-2 h-screen space-y-2'>
+      <ChainProgress />
+      {children}
+    </div>
       </div>
       <div id='modal-root'></div>
       <div className='flex flex-row-reverse'>
-        <NotificationCenter className='fixed space-y-2 p-4 w-80' />
+      <NotificationCenter className='fixed space-y-2 p-4 w-80' />
       </div>
-    </div>
+      </div>
   )
 }
 
@@ -347,11 +347,11 @@ const Modal: FC<{
   return (
     <Portal id='modal-root'>
       <div onClick={onBackgroundClick} className='absolute bg-black bg-opacity-50 inset-0 flex justify-center items-center'>
-        <div onClick={(e) => e.stopPropagation()} className={className}>
-          {children}
-        </div>
+      <div onClick={(e) => e.stopPropagation()} className={className}>
+      {children}
+    </div>
       </div>
-    </Portal>
+      </Portal>
   )
 }
 
@@ -383,10 +383,10 @@ const ConfirmModalButton: FC<{
         <h2 className='text-center text-lg font-semibold'>Please Confirm</h2>
         <div className='text-center text-lg'>{message}</div>
         <nav className='flex justify-end space-x-2'>
-          <button className='border rounded p-2 text-sky-700' onClick={closeModal}>Cancel</button>
-          <button onClick={confirm} className={className} disabled={disabled}>{children}</button>
+        <button className='border rounded p-2 text-sky-700' onClick={closeModal}>Cancel</button>
+        <button onClick={confirm} className={className} disabled={disabled}>{children}</button>
         </nav>
-      </Modal>}
+	</Modal>}
     </>
   )
 }
@@ -405,23 +405,23 @@ const TextareaModalBox: FC<{
   return (
     <>
       <div>
-        <textarea
-          autoFocus={true}
-          value={value}
-          onChange={onChange}
-          onKeyDown={pressEnter}
-          rows={6}
-          placeholder={placeholder}
-          className='block w-full p-2 text-sm ring-sky-500 ring-inset focus:ring-1'>
-        </textarea>
+      <textarea
+    autoFocus={true}
+    value={value}
+    onChange={onChange}
+    onKeyDown={pressEnter}
+    rows={6}
+    placeholder={placeholder}
+    className='block w-full p-2 text-sm ring-sky-500 ring-inset focus:ring-1'>
+      </textarea>
       </div>
       <button
-        onClick={() => onConfirm(value)}
-        disabled={!value}
-        className='flex space-x-1 items-center justify-center w-full p-2 bg-sky-700 text-white disabled:text-gray-500 disabled:bg-gray-100'>
-        {children}
-      </button>
-    </>
+    onClick={() => onConfirm(value)}
+    disabled={!value}
+    className='flex space-x-1 items-center justify-center w-full p-2 bg-sky-700 text-white disabled:text-gray-500 disabled:bg-gray-100'>
+      {children}
+    </button>
+      </>
   )
 }
 
@@ -458,13 +458,13 @@ const OpenURL: FC<{
       <button onClick={openModal} className={className}>{children}</button>
       {modal && <Modal className='w-80' onBackgroundClick={closeModal}>
         <div className='bg-white rounded overflow-hidden'>
-          <h2 className='bg-gray-100 p-2 text-center font-semibold'>Open Remote Content</h2>
-          <TextareaModalBox placeholder='Transaction URL/Hex or multisig wallet URL' onConfirm={confirm}>
-            <FolderOpenIcon className='w-4' />
-            <span>Open</span>
-          </TextareaModalBox>
+        <h2 className='bg-gray-100 p-2 text-center font-semibold'>Open Remote Content</h2>
+        <TextareaModalBox placeholder='Transaction URL/Hex or multisig wallet URL' onConfirm={confirm}>
+        <FolderOpenIcon className='w-4' />
+        <span>Open</span>
+        </TextareaModalBox>
         </div>
-      </Modal>}
+	</Modal>}
     </>
   )
 }
@@ -486,61 +486,61 @@ const ConfigModalButton: FC<{
       <button onClick={openModal} className={className}>{children}</button>
       {modal && <Modal className='w-80' onBackgroundClick={closeModal}>
         <div className='bg-white rounded overflow-hidden text-sm p-4 space-y-2'>
-          <div className='flex justify-between items-center'>
-            <div className='flex bg-sky-700 text-white divide-x border border-sky-700 rounded overflow-hidden'>
-              <button className='p-1 disabled:bg-white disabled:text-sky-700' onClick={() => setSubTab('basic')} disabled={subTab === 'basic'}>Basic</button>
-              <button className='p-1 disabled:bg-white disabled:text-sky-700' onClick={() => setSubTab('data')} disabled={subTab === 'data'}>Data</button>
-              <button className='p-1 disabled:bg-white disabled:text-sky-700' onClick={() => setSubTab('sync')} disabled={subTab === 'sync'}>Sync</button>
-            </div>
-            <button onClick={closeModal}><XMarkIcon className='w-6' /></button>
-          </div>
-          {subTab === 'basic' && <div className='space-y-2'>
-            <div>
-              <strong>Network</strong>
-              <div>{config.network}</div>
-            </div>
-            <div>
-              <strong>GraphQL</strong>
-              <div><InlineEditInput value={graphQLURI} setValue={setGraphQLURI} rows={3} /></div>
-            </div>
-            {config.submitAPI && <div>
-              <strong>Submit API</strong>
-              <ul>
-                {config.submitAPI.map((api, index) => <li key={index}>{api}</li>)}
-              </ul>
-            </div>}
-          </div>}
-          {subTab === 'data' && <div className='space-y-4'>
-            <div>
-              <strong>User Data Export/Import</strong>
-              <div>User data has to be on the same network. For example, data exported from testnet cannot be imported to mainnet.</div>
-              <div className='text-red-500 font-semibold'>Data from V1 is not supported!</div>
-            </div>
-            <div className='space-y-2'>
-              <div>
-                <ExportUserDataButton />
-              </div>
-              <div className='text-red-500 font-semibold'>Keep this file private!</div>
-            </div>
-            <div>
-              <strong>Import User Data</strong>
-              <ImportUserData />
-            </div>
-          </div>}
-          {subTab === 'sync' && <div className='space-y-2'>
-            <div>
-              <strong>GUN Peers</strong>
-              {config.gunPeers && <ul>
-                {config.gunPeers.map((peer, index) => <li key={index}>{peer}</li>)}
-              </ul>}
-            </div>
-            <div className='flex justify-between items-center'>
-              <div className='font-semibold'>Auto Sync Signature</div>
-              <Toggle isOn={config.autoSync} onChange={switchAutoSync} />
-            </div>
-          </div>}
+        <div className='flex justify-between items-center'>
+        <div className='flex bg-sky-700 text-white divide-x border border-sky-700 rounded overflow-hidden'>
+        <button className='p-1 disabled:bg-white disabled:text-sky-700' onClick={() => setSubTab('basic')} disabled={subTab === 'basic'}>Basic</button>
+        <button className='p-1 disabled:bg-white disabled:text-sky-700' onClick={() => setSubTab('data')} disabled={subTab === 'data'}>Data</button>
+        <button className='p-1 disabled:bg-white disabled:text-sky-700' onClick={() => setSubTab('sync')} disabled={subTab === 'sync'}>Sync</button>
         </div>
-      </Modal>}
+        <button onClick={closeModal}><XMarkIcon className='w-6' /></button>
+        </div>
+        {subTab === 'basic' && <div className='space-y-2'>
+          <div>
+          <strong>Network</strong>
+          <div>{config.network}</div>
+          </div>
+          <div>
+          <strong>GraphQL</strong>
+          <div><InlineEditInput value={graphQLURI} setValue={setGraphQLURI} rows={3} /></div>
+          </div>
+          {config.submitAPI && <div>
+            <strong>Submit API</strong>
+            <ul>
+            {config.submitAPI.map((api, index) => <li key={index}>{api}</li>)}
+           </ul>
+            </div>}
+         </div>}
+       {subTab === 'data' && <div className='space-y-4'>
+         <div>
+         <strong>User Data Export/Import</strong>
+         <div>User data has to be on the same network. For example, data exported from testnet cannot be imported to mainnet.</div>
+         <div className='text-red-500 font-semibold'>Data from V1 is not supported!</div>
+         </div>
+         <div className='space-y-2'>
+         <div>
+         <ExportUserDataButton />
+         </div>
+         <div className='text-red-500 font-semibold'>Keep this file private!</div>
+         </div>
+         <div>
+         <strong>Import User Data</strong>
+         <ImportUserData />
+        </div>
+        </div>}
+       {subTab === 'sync' && <div className='space-y-2'>
+         <div>
+         <strong>GUN Peers</strong>
+         {config.gunPeers && <ul>
+           {config.gunPeers.map((peer, index) => <li key={index}>{peer}</li>)}
+          </ul>}
+        </div>
+         <div className='flex justify-between items-center'>
+         <div className='font-semibold'>Auto Sync Signature</div>
+         <Toggle isOn={config.autoSync} onChange={switchAutoSync} />
+         </div>
+         </div>}
+       </div>
+	</Modal>}
     </>
   )
 }
@@ -564,18 +564,18 @@ const InlineEditInput: FC<{
 
   if (isEditable) return (
     <textarea
-      autoFocus={true}
-      className='p-2 block border w-full rounded ring-sky-500 focus:ring-1 text-inherit'
-      rows={rows}
-      onBlur={blurHandler}
-      onChange={changeHandler} value={inputValue} />
+    autoFocus={true}
+    className='p-2 block border w-full rounded ring-sky-500 focus:ring-1 text-inherit'
+    rows={rows}
+    onBlur={blurHandler}
+    onChange={changeHandler} value={inputValue} />
   )
 
   return (
     <>
       <span>{value}</span>
       <span><button className='text-sky-700 p-1' onClick={editHandler}><PencilSquareIcon className='w-4' /></button></span>
-    </>
+      </>
   )
 }
 

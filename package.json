@@ -1,6 +1,13 @@
 {
   "name": "round-table",
   "private": true,
+  "browser": {
+    "fs": false,
+    "path": false,
+    "os": false,
+    "net": false,
+    "tls": false
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -15,6 +22,7 @@
     "@cardano-graphql/client-ts": "^7.0.2",
     "@dcspark/cardano-multiplatform-lib-browser": "^3.1.2",
     "@heroicons/react": "^2.0.13",
+    "@upstash/redis": "^1.28.4",
     "bip39": "^3.0.4",
     "buffer": "^6.0.3",
     "cardano-utxo-wasm": "^0.2.0",
@@ -23,10 +31,13 @@
     "fractional": "^1.0.0",
     "graphql": "^16.6.0",
     "gun": "^0.2020.1238",
+    "ioredis": "^5.3.2",
+    "net": "^1.0.2",
     "next": "13.0.6",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "react-number-format": "^4.9.1"
+    "react-number-format": "^4.9.1",
+    "redis": "^4.6.13"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^5.16.5",

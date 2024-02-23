@@ -14,6 +14,7 @@ import { PasswordBox } from './password'
 import { NotificationContext } from './notification'
 import Image from 'next/image'
 import Gun from 'gun'
+import {Redis} from 'ioredis'
 import { getTransactionPath } from '../route'
 import { Loading, SpinnerIcon } from './status'
 import { NativeScriptViewer, SignatureViewer, TimelockExpiryViewer, TimelockStartViewer } from './native-script'
@@ -465,8 +466,33 @@ const useAutoSync = (
   const [config, _] = useContext(ConfigContext)
 
   const gun = useMemo(() => {
-    if (config.autoSync) return new Gun({ peers: config.gunPeers })
+    if (config.autoSync) return new Gun({ peers: config. gunPeers })
   }, [config.autoSync, config.gunPeers])
+
+  useEffect(() => {
+    (async () => {
+      await Array.from(signers, async (pkh) => {
+	const vkeywitness = signatures.get(pkh)
+	const cachedSignature =
+	  await fetch('/api/signatureCache/'+toHex(txHash)+'/'+pkh)
+	    .then(res => res.json())
+	    .then(j => j.signature)
+
+	if(vkeywitness && !cachedSignature) {
+	  console.log("Adding signature to Redis")
+          const hex = cardano.buildSignatureSetHex([vkeywitness])
+	  await fetch('/api/signatureCache/'+toHex(txHash)+'/'+pkh, {
+	    method: 'POST',
+	    body: JSON.stringify({vkeywitness: hex})
+	  }).then(res => res.json())
+	}
+	if(!vkeywitness && cachedSignature) {
+	  console.log("Adding signature from Redis")
+	  addSignatures(cachedSignature)
+	}
+      })
+    })();
+  }, [addSignatures, txHash, signatures, signers, config.network])
 
   useEffect(() => {
     if (!gun) return
