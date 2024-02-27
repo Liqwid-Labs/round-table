@@ -1,4 +1,4 @@
-import { useCallback, useContext, useEffect, useMemo, useState } from 'react'
+import { useCallback, useContext, useEffect, useMemo, useState, useRef } from 'react'
 import type { MouseEventHandler, FC, ReactNode, ChangeEventHandler } from 'react'
 import { AssetAmount, ADAAmount, LabeledCurrencyInput, getADASymbol, ADAInput } from './currency'
 import { collectTransactionOutputs, decodeASCII, getAssetName, getBalanceByUTxOs, getPolicyId, useTransactionSummaryQuery, useStakePoolsQuery } from '../cardano/query-api'
@@ -469,30 +469,41 @@ const useAutoSync = (
     if (config.autoSync) return new Gun({ peers: config. gunPeers })
   }, [config.autoSync, config.gunPeers])
 
+  const redisCache = useRef(undefined)
+
   useEffect(() => {
     (async () => {
+      const cachedSignatures =
+	await fetch('/api/signatureCache/'+toHex(txHash))
+	  .then(res => res.json())
+
+      console.log("Loaded signatures from redis: " + Object.keys(cachedSignatures))
+      Object.values(cachedSignatures).forEach(addSignatures)
+      redisCache.current = cachedSignatures
+    })();
+  }, []);
+
+  useEffect(() => {
+    (async () => {
+      // if redisCache is not yet acquired, we don't "add" to redis
+      // This is to prevent app spamming requests
+      if(!redisCache.current) return
       await Array.from(signers, async (pkh) => {
 	const vkeywitness = signatures.get(pkh)
-	const cachedSignature =
-	  await fetch('/api/signatureCache/'+toHex(txHash)+'/'+pkh)
-	    .then(res => res.json())
-	    .then(j => j.signature)
+	if(!vkeywitness) return
+        const hex = cardano.buildSignatureSetHex([vkeywitness])
 
-	if(vkeywitness && !cachedSignature) {
-	  console.log("Adding signature to Redis")
-          const hex = cardano.buildSignatureSetHex([vkeywitness])
-	  await fetch('/api/signatureCache/'+toHex(txHash)+'/'+pkh, {
-	    method: 'POST',
-	    body: JSON.stringify({vkeywitness: hex})
-	  }).then(res => res.json())
-	}
-	if(!vkeywitness && cachedSignature) {
-	  console.log("Adding signature from Redis")
-	  addSignatures(cachedSignature)
-	}
+	if(redisCache.current[pkh] === hex) return
+	console.log("Adding signature to Redis: " + pkh)
+	const res = await fetch('/api/signatureCache/'+toHex(txHash)+'/'+pkh, {
+	  method: 'POST',
+	  body: JSON.stringify({vkeywitness: hex})
+	}).then(res => res.status)
+
+	if(res === 200) redisCache.current[pkh] = hex
       })
     })();
-  }, [addSignatures, txHash, signatures, signers, config.network])
+  }, [addSignatures, cardano, config.network, signatures, signers, txHash])
 
   useEffect(() => {
     if (!gun) return

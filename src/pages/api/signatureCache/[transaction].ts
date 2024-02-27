@@ -17,12 +17,11 @@ export default async function handler(
       .connect();
   }
 
-  if(req.method === 'GET') {
-    const signature = await client.get(transaction+":"+pkh);
-    res.status(200).json({signature: signature})
-  } else if(req.method === 'POST') {
-    const {vkeywitness} = JSON.parse(req.body);
-    await client.set(transaction+":"+pkh, vkeywitness);
-    res.status(200).json({})
+  let ret = {}
+  for await (const key of client.scanIterator({MATCH: transaction+":*"})) {
+    const signature = await client.get(key);
+    ret[key.split(":")[1]] = signature;
   }
+
+  res.status(200).json(ret)
 }
