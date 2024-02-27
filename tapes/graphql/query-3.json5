@@ -1,114 +1,96 @@
 {
-    meta: {
-        createdAt: '2022-12-14T13:14:01.866Z',
-        host: 'https://preview-gql.junglestakepool.com/graphql',
-        reqHumanReadable: true,
-        resHumanReadable: true,
+  meta: {
+    createdAt: "2022-12-14T13:14:01.866Z",
+    host: "https://preview-gql.junglestakepool.com/graphql",
+    reqHumanReadable: true,
+    resHumanReadable: true,
+  },
+  req: {
+    headers: {
+      accept: "*/*",
+      "content-type": "application/json",
+      "user-agent": "node-fetch/1.0 (+https://github.com/bitinn/node-fetch)",
+      "accept-encoding": "gzip,deflate",
+      connection: "close",
     },
-    req: {
-        headers: {
-            accept: '*/*',
-            'content-type': 'application/json',
-            'user-agent': 'node-fetch/1.0 (+https://github.com/bitinn/node-fetch)',
-            'accept-encoding': 'gzip,deflate',
-            connection: 'close',
-        },
-        url: '/',
-        method: 'POST',
-        body: {
-            operationName: 'TransactionSummary',
-            variables: {
-                hashes: [
-                    '829c0c98a4037f214abe197276ef8b53be3e313b139e73a87f7a8d0ff70ff735',
-                ],
-            },
-            query: 'fragment OutputFields on TransactionOutput {\n  address\n  txHash\n  index\n  value\n  tokens {\n    asset {\n      assetId\n      __typename\n    }\n    quantity\n    __typename\n  }\n  __typename\n}\n\nquery TransactionSummary($hashes: [Hash32Hex]!) {\n  transactions(where: {hash: {_in: $hashes}}) {\n    hash\n    outputs {\n      ...OutputFields\n      __typename\n    }\n    __typename\n  }\n}',
-        },
+    url: "/",
+    method: "POST",
+    body: {
+      operationName: "TransactionSummary",
+      variables: {
+        hashes: [
+          "829c0c98a4037f214abe197276ef8b53be3e313b139e73a87f7a8d0ff70ff735",
+        ],
+      },
+      query: "fragment OutputFields on TransactionOutput {\n  address\n  txHash\n  index\n  value\n  tokens {\n    asset {\n      assetId\n      __typename\n    }\n    quantity\n    __typename\n  }\n  __typename\n}\n\nquery TransactionSummary($hashes: [Hash32Hex]!) {\n  transactions(where: {hash: {_in: $hashes}}) {\n    hash\n    outputs {\n      ...OutputFields\n      __typename\n    }\n    __typename\n  }\n}",
     },
-    res: {
-        status: 200,
-        headers: {
-            date: [
-                'Wed, 14 Dec 2022 13:14:03 GMT',
-            ],
-            server: [
-                'Apache/2.4.54 () OpenSSL/1.0.2k-fips',
-            ],
-            'x-powered-by': [
-                'Express',
-            ],
-            vary: [
-                'Origin',
-            ],
-            'content-type': [
-                'application/json; charset=utf-8',
-            ],
-            'cache-control': [
-                'max-age=20, public',
-            ],
-            'content-length': [
-                '1262',
-            ],
-            etag: [
-                'W/"4ee-ZPVnyDlMADw1b9VulkWXS2e+Bx0"',
-            ],
-            connection: [
-                'close',
-            ],
-        },
-        body: {
-            data: {
-                transactions: [
-                    {
-                        hash: '829c0c98a4037f214abe197276ef8b53be3e313b139e73a87f7a8d0ff70ff735',
-                        outputs: [
-                            {
-                                address: 'addr_test1qplyuheyp74tz84jx6p60de62dx9vwxjce472d97rhdymftllscj7rl5uphpv4utt7rglu4zqgac45pe2gax2wvuc2gsru6rms',
-                                txHash: '829c0c98a4037f214abe197276ef8b53be3e313b139e73a87f7a8d0ff70ff735',
-                                index: 2,
-                                value: '8949377793',
-                                tokens: [],
-                                __typename: 'TransactionOutput',
-                            },
-                            {
-                                address: 'addr_test1qplyuheyp74tz84jx6p60de62dx9vwxjce472d97rhdymftllscj7rl5uphpv4utt7rglu4zqgac45pe2gax2wvuc2gsru6rms',
-                                txHash: '829c0c98a4037f214abe197276ef8b53be3e313b139e73a87f7a8d0ff70ff735',
-                                index: 1,
-                                value: '1146460',
-                                tokens: [
-                                    {
-                                        asset: {
-                                            assetId: '9a556a69ba07adfbbce86cd9af8fd73f60fcf43c73f8deb51d2176b4504855464659',
-                                            __typename: 'Asset',
-                                        },
-                                        quantity: '10',
-                                        __typename: 'Token',
-                                    },
-                                ],
-                                __typename: 'TransactionOutput',
-                            },
-                            {
-                                address: 'addr_test1xzuh59uc243wuhpkcnfdha3flvmx5guf8thkctv8l75u2zzap4eefgsu8h5selu2aaeu29vh96rf99wcp5f0x60ldx6s2ad79j',
-                                txHash: '829c0c98a4037f214abe197276ef8b53be3e313b139e73a87f7a8d0ff70ff735',
-                                index: 0,
-                                value: '10000000',
-                                tokens: [
-                                    {
-                                        asset: {
-                                            assetId: '9a556a69ba07adfbbce86cd9af8fd73f60fcf43c73f8deb51d2176b4504855464659',
-                                            __typename: 'Asset',
-                                        },
-                                        quantity: '1',
-                                        __typename: 'Token',
-                                    },
-                                ],
-                                __typename: 'TransactionOutput',
-                            },
-                        ],
-                        __typename: 'Transaction',
+  },
+  res: {
+    status: 200,
+    headers: {
+      date: ["Wed, 14 Dec 2022 13:14:03 GMT"],
+      server: ["Apache/2.4.54 () OpenSSL/1.0.2k-fips"],
+      "x-powered-by": ["Express"],
+      vary: ["Origin"],
+      "content-type": ["application/json; charset=utf-8"],
+      "cache-control": ["max-age=20, public"],
+      "content-length": ["1262"],
+      etag: ['W/"4ee-ZPVnyDlMADw1b9VulkWXS2e+Bx0"'],
+      connection: ["close"],
+    },
+    body: {
+      data: {
+        transactions: [
+          {
+            hash: "829c0c98a4037f214abe197276ef8b53be3e313b139e73a87f7a8d0ff70ff735",
+            outputs: [
+              {
+                address: "addr_test1qplyuheyp74tz84jx6p60de62dx9vwxjce472d97rhdymftllscj7rl5uphpv4utt7rglu4zqgac45pe2gax2wvuc2gsru6rms",
+                txHash: "829c0c98a4037f214abe197276ef8b53be3e313b139e73a87f7a8d0ff70ff735",
+                index: 2,
+                value: "8949377793",
+                tokens: [],
+                __typename: "TransactionOutput",
+              },
+              {
+                address: "addr_test1qplyuheyp74tz84jx6p60de62dx9vwxjce472d97rhdymftllscj7rl5uphpv4utt7rglu4zqgac45pe2gax2wvuc2gsru6rms",
+                txHash: "829c0c98a4037f214abe197276ef8b53be3e313b139e73a87f7a8d0ff70ff735",
+                index: 1,
+                value: "1146460",
+                tokens: [
+                  {
+                    asset: {
+                      assetId: "9a556a69ba07adfbbce86cd9af8fd73f60fcf43c73f8deb51d2176b4504855464659",
+                      __typename: "Asset",
                     },
+                    quantity: "10",
+                    __typename: "Token",
+                  },
                 ],
-            },
-        },
+                __typename: "TransactionOutput",
+              },
+              {
+                address: "addr_test1xzuh59uc243wuhpkcnfdha3flvmx5guf8thkctv8l75u2zzap4eefgsu8h5selu2aaeu29vh96rf99wcp5f0x60ldx6s2ad79j",
+                txHash: "829c0c98a4037f214abe197276ef8b53be3e313b139e73a87f7a8d0ff70ff735",
+                index: 0,
+                value: "10000000",
+                tokens: [
+                  {
+                    asset: {
+                      assetId: "9a556a69ba07adfbbce86cd9af8fd73f60fcf43c73f8deb51d2176b4504855464659",
+                      __typename: "Asset",
+                    },
+                    quantity: "1",
+                    __typename: "Token",
+                  },
+                ],
+                __typename: "TransactionOutput",
+              },
+            ],
+            __typename: "Transaction",
+          },
+        ],
+      },
     },
+  },
 }

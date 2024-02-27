@@ -14,6 +14,7 @@
     "start": "next start",
     "lint": "next lint",
     "test": "jest",
+    "format": "prettier --write .",
     "cypress": "cypress open",
     "cypress:headless": "cypress run"
   },
@@ -34,6 +35,7 @@
     "gun": "^0.2020.1238",
     "net": "^1.0.2",
     "next": "13.0.6",
+    "prettier": "^3.2.5",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-number-format": "^4.9.1",

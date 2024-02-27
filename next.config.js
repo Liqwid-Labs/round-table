@@ -2,15 +2,15 @@
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    domains: ['gerowallet.io']
+    domains: ["gerowallet.io"],
   },
   webpack(config, { dev }) {
     config.experiments = {
       syncWebAssembly: true,
-      layers: true
-    }
-    return config
-  }
-}
+      layers: true,
+    };
+    return config;
+  },
+};
 
-module.exports = nextConfig
+module.exports = nextConfig;

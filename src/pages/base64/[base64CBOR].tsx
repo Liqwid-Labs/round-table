@@ -1,21 +1,27 @@
-import type { NextPage } from 'next'
-import { useRouter } from 'next/router'
-import { Layout, Modal } from '../../components/layout'
-import { Loading } from '../../components/status'
-import { TransactionLoader } from '../../components/transaction'
+import type { NextPage } from "next";
+import { useRouter } from "next/router";
+import { Layout, Modal } from "../../components/layout";
+import { Loading } from "../../components/status";
+import { TransactionLoader } from "../../components/transaction";
 
 const GetTransaction: NextPage = () => {
-  const router = useRouter()
-  const { base64CBOR } = router.query
+  const router = useRouter();
+  const { base64CBOR } = router.query;
 
-  if (typeof base64CBOR !== 'string') return null
+  if (typeof base64CBOR !== "string") return null;
 
   return (
     <Layout>
-      {!base64CBOR && <Modal><Loading /></Modal>}
-      {base64CBOR && <TransactionLoader content={Buffer.from(base64CBOR, 'base64')} />}
+      {!base64CBOR && (
+        <Modal>
+          <Loading />
+        </Modal>
+      )}
+      {base64CBOR && (
+        <TransactionLoader content={Buffer.from(base64CBOR, "base64")} />
+      )}
     </Layout>
-  )
-}
+  );
+};
 
-export default GetTransaction
+export default GetTransaction;

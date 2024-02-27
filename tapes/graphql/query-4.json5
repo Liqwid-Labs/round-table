@@ -1,76 +1,58 @@
 {
-    meta: {
-        createdAt: '2022-12-14T13:14:03.294Z',
-        host: 'https://preview-gql.junglestakepool.com/graphql',
-        reqHumanReadable: true,
-        resHumanReadable: true,
+  meta: {
+    createdAt: "2022-12-14T13:14:03.294Z",
+    host: "https://preview-gql.junglestakepool.com/graphql",
+    reqHumanReadable: true,
+    resHumanReadable: true,
+  },
+  req: {
+    headers: {
+      accept: "*/*",
+      "content-type": "application/json",
+      "user-agent": "node-fetch/1.0 (+https://github.com/bitinn/node-fetch)",
+      "accept-encoding": "gzip,deflate",
+      connection: "close",
     },
-    req: {
-        headers: {
-            accept: '*/*',
-            'content-type': 'application/json',
-            'user-agent': 'node-fetch/1.0 (+https://github.com/bitinn/node-fetch)',
-            'accept-encoding': 'gzip,deflate',
-            connection: 'close',
-        },
-        url: '/',
-        method: 'POST',
-        body: {
-            operationName: 'StakePools',
-            variables: {
-                id: 'pool1ayc7a29ray6yv4hn7ge72hpjafg9vvpmtscnq9v8r0zh7azas9c',
-                limit: 1,
-                offset: 0,
-            },
-            query: 'fragment StakePoolFields on StakePool {\n  id\n  margin\n  fixedCost\n  pledge\n  hash\n  metadataHash\n  __typename\n}\n\nfragment RetirementFields on StakePool {\n  retirements {\n    retiredInEpoch {\n      number\n      __typename\n    }\n    announcedIn {\n      hash\n      __typename\n    }\n    inEffectFrom\n    __typename\n  }\n  __typename\n}\n\nquery StakePools($id: StakePoolID, $limit: Int!, $offset: Int!) {\n  stakePools(limit: $limit, offset: $offset, where: {id: {_eq: $id}}) {\n    ...StakePoolFields\n    ...RetirementFields\n    __typename\n  }\n}',
-        },
+    url: "/",
+    method: "POST",
+    body: {
+      operationName: "StakePools",
+      variables: {
+        id: "pool1ayc7a29ray6yv4hn7ge72hpjafg9vvpmtscnq9v8r0zh7azas9c",
+        limit: 1,
+        offset: 0,
+      },
+      query: "fragment StakePoolFields on StakePool {\n  id\n  margin\n  fixedCost\n  pledge\n  hash\n  metadataHash\n  __typename\n}\n\nfragment RetirementFields on StakePool {\n  retirements {\n    retiredInEpoch {\n      number\n      __typename\n    }\n    announcedIn {\n      hash\n      __typename\n    }\n    inEffectFrom\n    __typename\n  }\n  __typename\n}\n\nquery StakePools($id: StakePoolID, $limit: Int!, $offset: Int!) {\n  stakePools(limit: $limit, offset: $offset, where: {id: {_eq: $id}}) {\n    ...StakePoolFields\n    ...RetirementFields\n    __typename\n  }\n}",
     },
-    res: {
-        status: 200,
-        headers: {
-            date: [
-                'Wed, 14 Dec 2022 13:14:05 GMT',
-            ],
-            server: [
-                'Apache/2.4.54 () OpenSSL/1.0.2k-fips',
-            ],
-            'x-powered-by': [
-                'Express',
-            ],
-            vary: [
-                'Origin',
-            ],
-            'content-type': [
-                'application/json; charset=utf-8',
-            ],
-            'cache-control': [
-                'max-age=20, public',
-            ],
-            'content-length': [
-                '343',
-            ],
-            etag: [
-                'W/"157-JITwyky3sPHnHcYYr4OBJyFYoSI"',
-            ],
-            connection: [
-                'close',
-            ],
-        },
-        body: {
-            data: {
-                stakePools: [
-                    {
-                        id: 'pool1ayc7a29ray6yv4hn7ge72hpjafg9vvpmtscnq9v8r0zh7azas9c',
-                        margin: 0.01,
-                        fixedCost: '340000000',
-                        pledge: '35000000000',
-                        hash: 'e931eea8a3e9344656f3f233e55c32ea5056303b5c313015871bc57f',
-                        metadataHash: '7296d38d3c67d769c38924679e132e7d9098e70891d7574cc5cf053574305629',
-                        __typename: 'StakePool',
-                        retirements: [],
-                    },
-                ],
-            },
-        },
+  },
+  res: {
+    status: 200,
+    headers: {
+      date: ["Wed, 14 Dec 2022 13:14:05 GMT"],
+      server: ["Apache/2.4.54 () OpenSSL/1.0.2k-fips"],
+      "x-powered-by": ["Express"],
+      vary: ["Origin"],
+      "content-type": ["application/json; charset=utf-8"],
+      "cache-control": ["max-age=20, public"],
+      "content-length": ["343"],
+      etag: ['W/"157-JITwyky3sPHnHcYYr4OBJyFYoSI"'],
+      connection: ["close"],
     },
+    body: {
+      data: {
+        stakePools: [
+          {
+            id: "pool1ayc7a29ray6yv4hn7ge72hpjafg9vvpmtscnq9v8r0zh7azas9c",
+            margin: 0.01,
+            fixedCost: "340000000",
+            pledge: "35000000000",
+            hash: "e931eea8a3e9344656f3f233e55c32ea5056303b5c313015871bc57f",
+            metadataHash: "7296d38d3c67d769c38924679e132e7d9098e70891d7574cc5cf053574305629",
+            __typename: "StakePool",
+            retirements: [],
+          },
+        ],
+      },
+    },
+  },
 }

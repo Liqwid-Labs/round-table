@@ -1,7 +1,7 @@
-import crypto from 'crypto'
+import crypto from "crypto";
 
-Object.defineProperty(global.self, 'crypto', {
+Object.defineProperty(global.self, "crypto", {
   value: {
     subtle: crypto.webcrypto.subtle,
   },
-})
+});

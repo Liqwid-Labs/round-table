@@ -31,15 +31,15 @@ The `pages/api` directory is mapped to `/api/*`. Files in this directory are tre
 
 ## Environment Variable
 
-* To use it on Cardano Preview Testnet, set `NEXT_PUBLIC_NETWORK=preview`. Leave it unset to use the Mainnet.
-* To connect it to a GraphQL node, set `NEXT_PUBLIC_GRAPHQL` to the URI of the node.
-* To sumbit transactions to relays, set `NEXT_PUBLIC_SUBMIT` to the URI of the node, split the URIs with `;`. **Beware that the server needs a reverse proxy to process CORS request.**
-* To sync signatures automatically, set `NEXT_PUBLIC_GUN` to the URIs of the peers, split the URIs with `;`. We use [GUN](https://gun.eco) to sync.
+- To use it on Cardano Preview Testnet, set `NEXT_PUBLIC_NETWORK=preview`. Leave it unset to use the Mainnet.
+- To connect it to a GraphQL node, set `NEXT_PUBLIC_GRAPHQL` to the URI of the node.
+- To sumbit transactions to relays, set `NEXT_PUBLIC_SUBMIT` to the URI of the node, split the URIs with `;`. **Beware that the server needs a reverse proxy to process CORS request.**
+- To sync signatures automatically, set `NEXT_PUBLIC_GUN` to the URIs of the peers, split the URIs with `;`. We use [GUN](https://gun.eco) to sync.
 
 ## Testing
 
-* To run Unit Tests, use `yarn test` command.
-* To run UI/UX Tests, use `yarn cypress` command. Make sure your dev server `http://localhost:3000/` is on. Or use `yarn cypress:headless` to run it in headless mode.
+- To run Unit Tests, use `yarn test` command.
+- To run UI/UX Tests, use `yarn cypress` command. Make sure your dev server `http://localhost:3000/` is on. Or use `yarn cypress:headless` to run it in headless mode.
 
 ## Learn More
 
