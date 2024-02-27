@@ -31,7 +31,7 @@ async function redisHandler(
       name: process.env.REDIS_MASTER_NAME ?? 'mymaster',
     })
 
-  const ret = await new Promise(res => {
+  const allKeys:string[] = await new Promise(res => {
     const stream = client.scanStream({
       match: transaction+":*",
     });
@@ -45,22 +45,23 @@ async function redisHandler(
     stream.on("end", () => {
       res(allKeys);
     });
-  }).then(keys =>
-    client
-      .pipeline((keys as string[]).map(x => ["get", x]))
-      .exec()
-      .then(res => {
-	if(!res) return {};
-	return res
-	  .map((x,i)=>{
-	    let r: {[index:string]:string} = {}
-	    r[(keys as string[])[i].split(":")[1]] = x[1] as string;
-	    return r;
-	  })
-	  .reduce((x,y)=>{
-	    return {...x, ...y};
-	  }, {})
-      }))
+  })
+
+  const ret:{[index:string]:string} = await client
+    .pipeline(allKeys.map(x => ["get", x]))
+    .exec()
+    .then(r => {
+      if(!r) return {};
+      return r
+	.map((x,i)=>{
+	  let r: {[index:string]:string} = {}
+	  r[allKeys[i].split(":")[1]] = x[1] as string;
+	  return r;
+	})
+	.reduce((x,y)=>{
+	  return {...x, ...y};
+	}, {})
+    })
 
   res.status(200).json(ret);
 }
