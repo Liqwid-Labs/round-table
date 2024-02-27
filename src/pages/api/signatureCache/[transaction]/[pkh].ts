@@ -4,7 +4,7 @@ import kv from '@vercel/kv';
 
 export default async function handler(
   req: NextApiRequest,
-  res: NextApiResponse<Data>
+  res: NextApiResponse<{[index:string]:string}>
 ) {
   const {transaction, pkh} = req.query
 
@@ -16,6 +16,13 @@ export default async function handler(
       .on('error', err => console.log('Redis Client Error', err))
       .connect();
   }
+
+  if(!client) {
+    res.status(500)
+    return
+  }
+
+  client = client as any // idk how to fix this type
 
   if(req.method === 'GET') {
     const signature = await client.get(transaction+":"+pkh);

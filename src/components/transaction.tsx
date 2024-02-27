@@ -469,7 +469,7 @@ const useAutoSync = (
     if (config.autoSync) return new Gun({ peers: config. gunPeers })
   }, [config.autoSync, config.gunPeers])
 
-  const redisCache = useRef(undefined)
+  const redisCache = useRef<undefined|{[index:string]:string}>(undefined)
 
   useEffect(() => {
     (async () => {
@@ -478,7 +478,7 @@ const useAutoSync = (
 	  .then(res => res.json())
 
       console.log("Loaded signatures from redis: " + Object.keys(cachedSignatures))
-      Object.values(cachedSignatures).forEach(addSignatures)
+      Object.values(cachedSignatures).forEach(x => addSignatures(x as string))
       redisCache.current = cachedSignatures
     })();
   }, []);
@@ -487,12 +487,13 @@ const useAutoSync = (
     (async () => {
       // if redisCache is not yet acquired, we don't "add" to redis
       // This is to prevent app spamming requests
-      if(!redisCache.current) return
       await Array.from(signers, async (pkh) => {
 	const vkeywitness = signatures.get(pkh)
 	if(!vkeywitness) return
         const hex = cardano.buildSignatureSetHex([vkeywitness])
 
+	if(!redisCache.current) return
+	if(!hex) return
 	if(redisCache.current[pkh] === hex) return
 	console.log("Adding signature to Redis: " + pkh)
 	const res = await fetch('/api/signatureCache/'+toHex(txHash)+'/'+pkh, {
