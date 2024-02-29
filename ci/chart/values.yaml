@@ -1,0 +1,40 @@
+name: round-table
+network: mainnet
+replicaCount: 2
+
+options:
+  gqlUri: https://d.graphql-api.mainnet.dandelion.link
+  submitUri: https://adao.panl.org;https://submit-api.apexpool.info/api/submit/tx
+
+image:
+  repository: ghcr.io/liqwid-labs/round-table
+  pullPolicy: IfNotPresent
+  tag: ""
+
+resources:
+  requests:
+    cpu: 10m
+    memory: 200Mi
+  limits:
+    cpu: "1"
+    memory: 2Gi
+
+redis:
+  fullnameOverride: round-table-redis
+  auth:
+    enabled: false
+  metrics:
+    enabled: false
+  sentinel:
+    enabled: true
+    replicas: 3
+    automateClusterRecovery: true
+    downAfterMilliseconds: 2000
+    failoverTimeout: 10000
+    resources:
+      requests:
+        cpu: 10m
+        memory: 50Mi
+      limits:
+        cpu: 500m
+        memory: 500Mi
