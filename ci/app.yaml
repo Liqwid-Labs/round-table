@@ -36,7 +36,7 @@ spec:
         namespace: tools
       source:
         repoURL: https://github.com/Liqwid-Labs/round-table
-        targetRevision: "{{ .values.revision }}"
+        targetRevision: HEAD
         path: ci/chart
         helm:
           parameters:

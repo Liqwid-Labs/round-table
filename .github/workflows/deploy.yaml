@@ -33,22 +33,3 @@ jobs:
           tags: |
             ghcr.io/liqwid-labs/round-table:${{ github.sha }}
             ghcr.io/liqwid-labs/round-table:latest
-
-  deploy:
-    name: Deploy
-    runs-on: ubuntu-latest
-    needs: build
-    permissions:
-      contents: read
-      id-token: write
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-
-      - name: Authenticate Flagship
-        uses: liqwid-labs/flagship-authenticate-action@main
-        with:
-          kubeconfig: ${{ secrets.ARGOCD_DEV_KUBECONFIG }}
-
-      - name: Deploy ArgoCD Application
-        run: kubectl apply -f ci/app.yaml
