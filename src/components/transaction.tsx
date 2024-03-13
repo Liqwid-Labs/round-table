@@ -685,9 +685,13 @@ const useAutoSync = (
       console.log(
         "Loaded signatures from redis: " + Object.keys(cachedSignatures),
       );
-      Object.values(cachedSignatures).forEach((x) =>
-        addSignatures(x as string),
-      );
+
+      for (var p in cachedSignatures) {
+	await new Promise(resolve => {
+          setTimeout(resolve, 50);
+	});
+        addSignatures(cachedSignatures[p] as string)
+      }
       redisCache.current = cachedSignatures;
     })();
   }, []);
@@ -956,10 +960,11 @@ const TransactionViewer: FC<{
   }, [nativeScripts, requiredPaymentKeys, requiredStakingKeys]);
   const [signatureMap, setSignatureMap] = useState<SignatureMap>(new Map());
   useEffect(
-    () =>
+    () => {
       setSignatureMap(
         updateSignatureMap(transaction.witness_set(), new Map(), txHash),
-      ),
+      )
+    },
     [transaction, txHash],
   );
   const signedTransaction = useMemo(() => {
