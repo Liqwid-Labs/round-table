@@ -42,7 +42,7 @@ const defaultConfig: Config = {
   network: "mainnet",
   submitAPI: defaultSubmitURIMainnet,
   SMASH: defaultSMASHMainnet,
-  gunPeers: [],
+  gunPeers: ["https://adao-gun.glitch.me/gun"],
   autoSync: true,
 };
 
