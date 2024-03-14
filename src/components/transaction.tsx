@@ -665,7 +665,7 @@ const useAutoSync = (
   cardano: Cardano,
   txHash: TransactionHash,
   signatures: Map<string, Vkeywitness>,
-  addSignatures: (witnessSetHex: string) => void,
+  addSignatures: (witnessSetHex: string[]) => void,
   signers: Set<string>,
 ) => {
   const [config, _] = useContext(ConfigContext);
@@ -686,12 +686,8 @@ const useAutoSync = (
         "Loaded signatures from redis: " + Object.keys(cachedSignatures),
       );
 
-      for (var p in cachedSignatures) {
-	await new Promise(resolve => {
-          setTimeout(resolve, 50);
-	});
-        addSignatures(cachedSignatures[p] as string)
-      }
+      addSignatures(Object.values(cachedSignatures));
+
       redisCache.current = cachedSignatures;
     })();
   }, []);
@@ -742,7 +738,7 @@ const useAutoSync = (
           if (data !== hex) node.put(hex);
         });
       } else {
-        node.on(addSignatures);
+        node.on(x=>addSignatures([x]));
       }
 
       return node;
@@ -979,15 +975,20 @@ const TransactionViewer: FC<{
     [cardano, transaction],
   );
   const addSignatures = useCallback(
-    (witnessSetHex: string) => {
-      const result = getResult(() => {
-        const bytes = Buffer.from(witnessSetHex, "hex");
-        return cardano.lib.TransactionWitnessSet.from_bytes(bytes);
+    (witnessSetHexs: string[]) => {
+      let tempSignatureMap = signatureMap;
+      witnessSetHexs.map(witnessSetHex => {
+	const result = getResult(() => {
+          const bytes = Buffer.from(witnessSetHex, "hex");
+          return cardano.lib.TransactionWitnessSet.from_bytes(bytes);
+	});
+
+	if (!result.isOk) return [];
+
+	tempSignatureMap = updateSignatureMap(result.data, tempSignatureMap, txHash);
       });
 
-      if (!result.isOk) return;
-
-      setSignatureMap(updateSignatureMap(result.data, signatureMap, txHash));
+      setSignatureMap(tempSignatureMap);
     },
     [signatureMap, cardano, txHash],
   );
