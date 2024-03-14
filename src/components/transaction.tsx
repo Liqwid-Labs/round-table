@@ -665,7 +665,7 @@ const useAutoSync = (
   cardano: Cardano,
   txHash: TransactionHash,
   signatures: Map<string, Vkeywitness>,
-  addSignatures: (witnessSetHex: string[]) => void,
+  addSignatures: (witnessSetHex: string | string[]) => void,
   signers: Set<string>,
 ) => {
   const [config, _] = useContext(ConfigContext);
@@ -738,7 +738,7 @@ const useAutoSync = (
           if (data !== hex) node.put(hex);
         });
       } else {
-        node.on(x=>addSignatures([x]));
+        node.on(addSignatures);
       }
 
       return node;
@@ -975,8 +975,9 @@ const TransactionViewer: FC<{
     [cardano, transaction],
   );
   const addSignatures = useCallback(
-    (witnessSetHexs: string[]) => {
+    (witnessSetHexs: string | string[]) => {
       let tempSignatureMap = signatureMap;
+      if(typeof witnessSetHexs == "string") witnessSetHexs = [witnessSetHexs];
       witnessSetHexs.map(witnessSetHex => {
 	const result = getResult(() => {
           const bytes = Buffer.from(witnessSetHex, "hex");
