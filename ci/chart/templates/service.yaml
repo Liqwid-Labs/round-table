@@ -6,7 +6,7 @@ metadata:
     app.kubernetes.io/name: {{ .Values.name }}
   {{- if .Values.service.annotations }}
   annotations:
-    {{- toYaml .Values.service.annotations | nindent 4 }}
+    {{- tpl (toYaml .Values.service.annotations) . | nindent 4 }}
   {{- end }}
 spec:
   type: ClusterIP
