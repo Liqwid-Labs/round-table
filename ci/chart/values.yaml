@@ -11,6 +11,11 @@ image:
   pullPolicy: IfNotPresent
   tag: ""
 
+service:
+  annotations:
+    tailscale.com/expose: "true"
+    tailscale.com/hostname: "{{ .Values.name }}"
+
 resources:
   requests:
     cpu: 10m
